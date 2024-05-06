@@ -42,7 +42,15 @@ ribbon:
     enabled: true
     clients: userservice
 feign:
-  client:
-    config:
-      default:
-        logger-level: full
+  httpclient:
+    enabled: true
+    max-connections: 200
+    max-connections-per-route: 50
+#    支持httpclient
+#  client:
+#    config:
+#      default:
+#        logger-level: basic
+#        代表全局
+#        logger-level: full
+
