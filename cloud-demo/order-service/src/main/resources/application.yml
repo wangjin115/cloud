@@ -12,8 +12,8 @@ spring:
     nacos:
       server-addr: localhost:8848
       discovery:
-        cluster-name: HZ
-        namespace: f5d45670-d5c4-4da3-8118-057c6675c02c   #dev
+#        cluster-name: HZ
+#        namespace: f5d45670-d5c4-4da3-8118-057c6675c02c   #dev
 mybatis:
   type-aliases-package: cn.itcast.user.pojo
   configuration:
@@ -41,3 +41,16 @@ ribbon:
   eager-load:
     enabled: true
     clients: userservice
+feign:
+  httpclient:
+    enabled: true
+    max-connections: 200
+    max-connections-per-route: 50
+#    支持httpclient
+#  client:
+#    config:
+#      default:
+#        logger-level: basic
+#        代表全局
+#        logger-level: full
+
