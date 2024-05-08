@@ -10,6 +10,7 @@
         <module name="user-service" />
         <module name="eureka-server" />
         <module name="feign-api" />
+        <module name="gateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11">
@@ -21,6 +22,7 @@
       <module name="eureka-server" options="-parameters" />
       <module name="feign-api" options="-parameters" />
       <module name="feign-api1" options="-parameters" />
+      <module name="gateway" options="-parameters" />
       <module name="order-service" options="-parameters" />
       <module name="user-service" options="-parameters" />
     </option>
