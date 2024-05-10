@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d9250552-a23a-4187-8d43-b044842a9747" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../hotel-demo/src/test/java/cn/itcast/hotel/HotelDocumentTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hotel-demo/target/test-classes/cn/itcast/hotel/HotelDocumentTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/259c590d-7deb-470d-9db7-f043b00303f7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/259c590d-7deb-470d-9db7-f043b00303f7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hotel-demo/src/test/java/cn/itcast/hotel/HotelSearchTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hotel-demo/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../hotel-demo/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hotel-demo/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../hotel-demo/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hotel-demo/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../hotel-demo/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hotel-demo/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../hotel-demo/target/classes/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
