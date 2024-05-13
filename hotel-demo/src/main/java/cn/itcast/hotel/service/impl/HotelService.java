@@ -8,6 +8,7 @@ import cn.itcast.hotel.pojo.RequestParams;
 import cn.itcast.hotel.service.IHotelService;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.apache.ibatis.io.ResolverUtil;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
@@ -21,14 +22,22 @@ import org.elasticsearch.index.query.functionscore.FunctionScoreQueryBuilder;
 import org.elasticsearch.index.query.functionscore.ScoreFunctionBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.Aggregations;
+import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
+import org.elasticsearch.search.suggest.Suggest;
+import org.elasticsearch.search.suggest.SuggestBuilder;
+import org.elasticsearch.search.suggest.SuggestBuilders;
+import org.elasticsearch.search.suggest.completion.CompletionSuggestion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -67,6 +76,95 @@ public class HotelService extends ServiceImpl<HotelMapper, Hotel> implements IHo
         }
 
 
+    }
+
+
+    @Override
+    public Map<String, List<String>> filters(RequestParams params) {
+        try {
+            SearchRequest request=new SearchRequest("hotel");
+            buildBasicQuery(params,request);
+
+            request.source().size(0);
+            buildAggregation(request);
+            SearchResponse response = client.search(request, RequestOptions.DEFAULT);
+
+            Map<String,List<String>> result=new HashMap<>();
+            Aggregations aggregations = response.getAggregations();
+
+            List<String> brandList = getAggByName(aggregations,"brandAgg");
+            result.put("brand",brandList);
+            List<String> cityList = getAggByName(aggregations,"cityAgg");
+            result.put("city",cityList);
+            List<String> starList = getAggByName(aggregations,"starAgg");
+            result.put("starName",starList);
+
+            return result;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<String> getSuggestions(String prefix) {
+
+        try {
+            SearchRequest request = new SearchRequest("hotel");
+
+            request.source().suggest(new SuggestBuilder().addSuggestion(
+                    "suggestions",
+                    SuggestBuilders.completionSuggestion("suggestion")
+                            //对名为“suggestion”的字段进行补全
+                            .prefix(prefix)
+                            .skipDuplicates(true)
+                            .size(10)
+            ));
+
+            SearchResponse response = client.search(request, RequestOptions.DEFAULT);
+
+            Suggest suggest = response.getSuggest();
+
+            CompletionSuggestion suggestions = suggest.getSuggestion("suggestions");
+
+            List<CompletionSuggestion.Entry.Option> options = suggestions.getOptions();
+
+            List<String> list =new ArrayList<>((options.size()));
+            for (CompletionSuggestion.Entry.Option option : options) {
+                String text = option.getText().toString();
+                list.add(text);
+            }
+            return list;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private List<String> getAggByName(Aggregations aggregations,String aggName) {
+        Terms brandTerms = aggregations.get(aggName);
+
+        List<? extends Terms.Bucket> buckets = brandTerms.getBuckets();
+
+        List<String> brandList =new ArrayList<>();
+        for (Terms.Bucket bucket : buckets) {
+            String key = bucket.getKeyAsString();
+            brandList.add(key);
+        }
+        return brandList;
+    }
+
+    private void buildAggregation(SearchRequest request) {
+        request.source().aggregation(AggregationBuilders
+                .terms("brandAgg")
+                .field("brand")
+                .size(100));
+        request.source().aggregation(AggregationBuilders
+                .terms("cityAgg")
+                .field("city")
+                .size(100));
+        request.source().aggregation(AggregationBuilders
+                .terms("starAgg")
+                .field("starName")
+                .size(100));
     }
 
     private void buildBasicQuery(RequestParams params, SearchRequest request) {
