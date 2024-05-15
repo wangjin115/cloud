@@ -5,8 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d9250552-a23a-4187-8d43-b044842a9747" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../hotel-demo/src/test/java/cn/itcast/hotel/HotelSearchTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hotel-admin/src/main/java/cn/itcast/hotel/constant/MqConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hotel-demo/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hotel-demo/src/main/java/cn/itcast/hotel/config/MqConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hotel-demo/src/main/java/cn/itcast/hotel/constants/MqConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hotel-demo/src/main/java/cn/itcast/hotel/mq/HotelListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hotel-demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../hotel-demo/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hotel-demo/src/main/java/cn/itcast/hotel/service/IHotelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hotel-demo/src/main/java/cn/itcast/hotel/service/IHotelService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hotel-demo/src/main/java/cn/itcast/hotel/service/impl/HotelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hotel-demo/src/main/java/cn/itcast/hotel/service/impl/HotelService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hotel-demo/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../hotel-demo/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hotel-demo/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../hotel-demo/target/classes/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hotel-demo/target/classes/cn/itcast/hotel/service/IHotelService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../hotel-demo/target/classes/cn/itcast/hotel/service/IHotelService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hotel-demo/target/classes/cn/itcast/hotel/service/impl/HotelService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../hotel-demo/target/classes/cn/itcast/hotel/service/impl/HotelService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +52,9 @@
       </UrlAndAccount>
     </option>
   </component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -186,7 +203,7 @@
       <option name="presentableId" value="Default" />
       <updated>1714056847496</updated>
       <workItem from="1714056848742" duration="48846000" />
-      <workItem from="1715303640987" duration="1027000" />
+      <workItem from="1715303640987" duration="2513000" />
     </task>
     <servers />
   </component>

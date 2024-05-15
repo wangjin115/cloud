@@ -9,6 +9,8 @@ import cn.itcast.hotel.service.IHotelService;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.ibatis.io.ResolverUtil;
+import org.elasticsearch.action.delete.DeleteRequest;
+import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
@@ -32,6 +34,7 @@ import org.elasticsearch.search.suggest.Suggest;
 import org.elasticsearch.search.suggest.SuggestBuilder;
 import org.elasticsearch.search.suggest.SuggestBuilders;
 import org.elasticsearch.search.suggest.completion.CompletionSuggestion;
+import org.elasticsearch.xcontent.XContentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -137,6 +140,41 @@ public class HotelService extends ServiceImpl<HotelMapper, Hotel> implements IHo
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        try {
+            // 1.准备Request      // DELETE /hotel/_doc/{id}
+            DeleteRequest request = new DeleteRequest("hotel", id.toString());
+            // 2.发送请求
+            client.delete(request, RequestOptions.DEFAULT);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    @Override
+    public void insertById(Long id) {
+
+        try {
+            Hotel hotel=getById(id);
+
+            HotelDoc hotelDoc = new HotelDoc(hotel);
+            // 3.转JSON
+            String json = JSON.toJSONString(hotelDoc);
+
+            // 1.准备Request
+            IndexRequest request = new IndexRequest("hotel").id(hotelDoc.getId().toString());
+            // 2.准备请求参数DSL，其实就是文档的JSON字符串
+            request.source(json, XContentType.JSON);
+            // 3.发送请求
+            client.index(request, RequestOptions.DEFAULT);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     private List<String> getAggByName(Aggregations aggregations,String aggName) {
