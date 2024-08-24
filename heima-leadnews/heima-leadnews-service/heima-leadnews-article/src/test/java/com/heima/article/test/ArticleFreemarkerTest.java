@@ -57,6 +57,8 @@ public class ArticleFreemarkerTest {
             params.put("content", JSONArray.parseArray(apArticleContent.getContent()));
 
             template.process(params, out);
+            //template是模版，params是模版需要的参数，把模版需要的参数放到模版，输出
+            //现在的输出只是一个out对象，下面把out对象转换成输出流，输入到minio中了
             InputStream in = new ByteArrayInputStream(out.toString().getBytes());
 
             //3.把html文件上传到minio中
